@@ -34,42 +34,19 @@ def egyszerusito(sor):
     return visszaad
 
 def rovidebb(egy):
-    vissza2 = []
-    for a in egy:
-        vissza2.append(a)
-    vissza=":".join(vissza2)   
-    benne_van = False
-    if benne_van == False and '0:0:0:0:0:0:0:0' in egy:
-        vissza[vissza.index('0:0:0:0:0:0:0:0')]=(':')
-        benne_van = True
-    elif benne_van == False and ':0:0:0:0:0:0:0' in egy:
-        vissza[vissza.index(':0:0:0:0:0:0:0')]=(':')
-        benne_van = True
-    elif benne_van == False and ':0:0:0:0:0:0' in egy:
-        vissza[vissza.index(':0:0:0:0:0:0')] = (':')
-        benne_van = True
-    elif benne_van == False and ':0:0:0:0:0:0' in egy:
-        vissza[vissza.index(':0:0:0:0:0:0')] = (':')
-        benne_van = True
-    elif benne_van == False and ':0:0:0:0:0' in egy:
-        vissza[vissza.index(':0:0:0:0:0')] = (':')
-        benne_van = True
-    elif benne_van == False and ':0:0:0:0' in egy:
-        vissza[vissza.index(':0:0:0:0')] = (':')
-        benne_van = True
-    elif benne_van == False and ':0:0:0' in egy:
-        vissza[vissza.index(':0:0:0')] = (':')
-        benne_van = True
-    elif benne_van == False and ':0:0' in egy:
-        vissza[vissza.index(':0:0')] = (':')
-        benne_van = True
-    elif benne_van == False and ':0' in egy:
-        vissza[vissza.index(':0')] = (':')
-        benne_van = True
     
-    if egy == "Nem roviditheto tovabb":
-        vissza = "Nem roviditheto tovabb"
-    return vissza   
+    if ':0:0:0:0:0:0:' in egy:
+        return egy[:egy.index(':0:0:0:0:0:0:')]+'::'+egy[egy.index(':0:0:0:0:0:0:')+13:]
+    elif ':0:0:0:0:0:' in egy:
+        return egy[:egy.index(':0:0:0:0:0:')]+'::'+egy[egy.index(':0:0:0:0:0:')+11:]
+    elif ':0:0:0:0:' in egy:
+        return egy[:egy.index(':0:0:0:0:')]+'::'+egy[egy.index(':0:0:0:0:')+9:]
+    elif ':0:0:0:' in egy:
+        return egy[:egy.index(':0:0:0:')]+'::'+egy[egy.index(':0:0:0:')+7:]
+    elif ':0:0:' in egy:
+        return egy[:egy.index(':0:0:')]+'::'+egy[egy.index(':0:0:')+5:]
+    
+    return "Nem roviditheto tovabb"
 
 def fajta(sor):
     if sor[0:9] == "2001:0db8":
@@ -89,10 +66,10 @@ with open("ip.txt","rt+", encoding="utf-8") as f:
         ip[n] = {}
         ip[n]["Beolvasott ip"] = sor
         ip[n]["elso rovidetes"] = egyszerusito(sor)
-        #ip[n]['masodik'] = rovidebb(egyszerusito(sor))
+        ip[n]['masodik'] = rovidebb(egyszerusito(sor))
         ip[n]['fajta'] = fajta(sor)
         ip[n]['nullak szama'] = sor.count("0")
-print(ip)
+#print(ip)
 """
 with open("sem.txt", "wt", encoding='utf-8') as g:
     for k,v in ip.items():
@@ -135,4 +112,6 @@ print("{0}\n{1}\n".format(ip[sorszam]['Beolvasott ip'],ip[sorszam]["elso rovidet
 
 print("7. feladat")
 """Elozo bekeret ip cimet tovabb roviditeni."""
-#print("{0}\n".format(ip[sorszam]['masodik']))
+print("{0}\n".format(ip[sorszam]['masodik']))
+
+#print(rovidebb(ip[sorszam]["elso rovidetes"]))
