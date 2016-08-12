@@ -103,7 +103,7 @@ print("Dokumentacios cim: {0}\nGlobalis egyedi cim:{1}\nHelyi egyedi cim:{2}\n".
 with open("sok.txt", "wt", encoding='utf-8') as g:
     for k,v in ip.items():
         if v["nullak szama"] >= 18:
-            g.write("{0}:{1} \n".format(k,v['Beolvasott ip']))
+            g.write("{0} {1} \n".format(k,v['Beolvasott ip']))
 
 print("6. feladat")
 """sorszamot be kell kerni a felhasznalotol """
